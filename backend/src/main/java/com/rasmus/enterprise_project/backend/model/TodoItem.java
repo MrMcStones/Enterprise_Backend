@@ -1,6 +1,7 @@
 package com.rasmus.enterprise_project.backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 // Representerar en 2Do databasen
 @Entity
@@ -10,7 +11,9 @@ public class TodoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 2Do ID
 
+    @NotEmpty(message = "Title is required")
     private String title; // 2Do Titel
+
     private boolean completed; // 2Do Status
 
     // Getters och Setters
