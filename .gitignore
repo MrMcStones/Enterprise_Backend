@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignorera databasen
+data/todoapp.mv.db
+data/todoapp.trace.db
