@@ -3,18 +3,17 @@ package com.rasmus.enterprise_project.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
-// Representerar en 2Do databasen
 @Entity
 public class TodoItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 2Do ID
+    private Long id;
 
-    @NotEmpty(message = "Title is required")
-    private String title; // 2Do Titel
+    @NotEmpty(message = "Title cannot be empty")
+    private String title;
 
-    private boolean completed; // 2Do Status
+    private boolean completed;
 
     // Getters och Setters
     public Long getId() {

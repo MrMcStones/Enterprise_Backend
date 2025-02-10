@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,13 +22,12 @@ public class TodoController {
     @GetMapping
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<TodoItem>> getAllTodos() {
-        List<TodoItem> todos = todoService.getAllTodos();
-        return ResponseEntity.ok(todos);
+        return ResponseEntity.ok(todoService.getAllTodos());
     }
 
     @PostMapping
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<TodoItem> createTodo(@RequestBody TodoItem todoItem) {
+    public ResponseEntity<TodoItem> createTodo(@Valid @RequestBody TodoItem todoItem) {
         TodoItem createdTodo = todoService.createTodo(todoItem);
         return ResponseEntity.ok(createdTodo);
     }
@@ -35,8 +35,7 @@ public class TodoController {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<TodoItem> updateTodo(@PathVariable Long id, @RequestBody TodoItem updatedTodo) {
-        TodoItem todo = todoService.updateTodo(id, updatedTodo);
-        return ResponseEntity.ok(todo);
+        return ResponseEntity.ok(todoService.updateTodo(id, updatedTodo));
     }
 
     @DeleteMapping("/{id}")
